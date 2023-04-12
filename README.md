@@ -1,7 +1,25 @@
 Keyring
 =======
-[![Build Status](https://github.com/99designs/keyring/workflows/Continuous%20Integration/badge.svg)](https://github.com/99designs/keyring/actions)
-[![Documentation](https://godoc.org/github.com/99designs/keyring?status.svg)](https://godoc.org/github.com/99designs/keyring)
+
+## THIS IS A STALE FORK
+
+Do not use this fork unless you have a specific reason as it will remain stale and will disappear once https://github.com/99designs/keyring/issues/103 is resolved (if ever).
+
+### Why
+
+The purpose of this fork is to fix issues where indirect dependencies that your project has (which you have limited control over) include `99designs/keyring`, which has an outstanding bug (https://github.com/99designs/keyring/issues/103) that causes zombie dbus-daemons processes on each execution. This is an absolute deal breaker for many types of tool or service.
+
+### How
+
+Add the following line to your `go.mod` file:
+
+```
+replace github.com/99designs/keyring => github.com/Jeffail/keyring v1.2.3
+```
+
+Unfortunately, any modules that import your module will also need to add a replace directive of their own.
+
+---
 
 Keyring provides a common interface to a range of secure credential storage services. Originally developed as part of [AWS Vault](https://github.com/99designs/aws-vault), a command line tool for securely managing AWS access from developer workstations.
 
